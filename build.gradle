@@ -15,7 +15,7 @@ buildscript {
 }
 
 plugins {
-   id "co.riiid.gradle" version "0.4.2"
+  id "co.riiid.gradle" version "0.4.2"
   // the old co.riiid.gradle is not gradle 7.0 compatible
   // id "com.github.humblerookie.gradle" version "0.4.4"
   id "com.github.ben-manes.versions" version '0.36.0'
@@ -26,7 +26,7 @@ repositories {
 }
 
 group = 'org.opensearch.plugin'
-version = '1.0.0'
+version = "1.0.0"
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -49,7 +49,7 @@ assemble {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-  compile files('lib/nlp-lang-1.7.jar')
+  implementation files('lib/nlp-lang-1.7.jar')
   // the yaml tests require a log4j2 dependency, otherwise a dependency is thrown on startup
   runtimeOnly 'org.apache.logging.log4j:log4j-core:2.17.1'
   // testCompile 'org.powermock:powermock-api-mockito:1.6.2'
@@ -81,15 +81,10 @@ githubRelease.doFirst {
 }
 
 test {
-
-//How to run Gradle test when all tests are UP-TO-DATE?   add below line
-      dependsOn 'cleanTest'
-    //To enable this fail fast behavior so even a one unit test fail it keeps running 
-        failFast = true
-
-      // Give a different location to the gradle html reports in a folder called gradlehtmlReports
-    reports.html.enabled = true
-    reports.html.setDestination(file("$projectDir/gradlehtmlReports"))
+  // How to run Gradle test when all tests are UP-TO-DATE?   add below line
+  dependsOn 'cleanTest'
+  // To enable this fail fast behavior so even a one unit test fail it keeps running 
+  failFast = true
 }
 
 // // setup yaml rest tests
